@@ -1,4 +1,5 @@
-﻿using MortgageCalculator.Api.Repos;
+﻿using MortgageCalculator.Api.Models;
+using MortgageCalculator.Api.Repos;
 using MortgageCalculator.Dto;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,9 @@ namespace MortgageCalculator.Api.Services
             return _mortgageRepo.GetAllMortgages().FirstOrDefault(x => x.MortgageId == mortageId);
         }
 
-        public object FixedCalculation(double loanAmount,double interest, int numberOfYears)
+        public List<LoanViewModel> LoanCalculation(double loanAmount,double interest, int numberOfYears, MortgageType type)
         {
-            //var loanAmount = 2000000;
-            //var interest = 13.5;
-            //var numberOfYears = 10;
+            List<LoanViewModel> result = new List<LoanViewModel>();
 
             // rate of interest and number of payments for monthly payments
             var rateOfInterest = interest / 1200;
@@ -39,13 +38,29 @@ namespace MortgageCalculator.Api.Services
 
             var rateOfInterestPerMonth = rateOfInterest * 100;
 
-            //
-            var principalAmount = loanAmount * rateOfInterest;
+            for(int i=0;i<= numberOfPayments; i++)
+            {
+                var principalAmount = loanAmount * rateOfInterest;
 
-            // loan amount = (interest rate * loan amount) / (1 - (1 + interest rate)^(number of payments * -1))
-            var paymentAmount = (rateOfInterest * loanAmount) / (1 - Math.Pow(1 + rateOfInterest, numberOfPayments * -1));
+                // loan amount = (interest rate * loan amount) / (1 - (1 + interest rate)^(number of payments * -1))
+                var paymentAmount = (rateOfInterest * loanAmount) / (1 - Math.Pow(1 + rateOfInterest, numberOfPayments * -1));
 
-            return paymentAmount;
+                var interestAmount = paymentAmount - principalAmount;
+
+                if(type == MortgageType.Variable)
+                {
+                    loanAmount -= principalAmount;
+                }
+
+                var EMI = new LoanViewModel();
+
+                EMI.EMIAmount       = paymentAmount;
+                EMI.InterestAmount  = interestAmount;
+                EMI.PrincipalAmount = principalAmount;
+
+                result.Add(EMI);
+            }
+            return result;
         }
     }
 }
