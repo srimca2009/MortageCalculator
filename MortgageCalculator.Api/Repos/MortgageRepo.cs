@@ -28,7 +28,7 @@ namespace MortgageCalculator.Api.Repos
 
                 // Store data in the cache
                 CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-                cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddHours(1.0);
+                cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddHours(24.00);
                 cache.Add(CacheKey, getAllMortgages, cacheItemPolicy);
 
                 return getAllMortgages;
