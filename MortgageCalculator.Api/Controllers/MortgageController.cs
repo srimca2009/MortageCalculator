@@ -7,6 +7,11 @@ namespace MortgageCalculator.Api.Controllers
 {
     public class MortgageController : ApiController
     {
+
+        public MortgageController()
+        {
+
+        }
         // GET: api/Mortgage
         public IEnumerable<Dto.Mortgage> Get()
         {
