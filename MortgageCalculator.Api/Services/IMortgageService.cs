@@ -10,7 +10,7 @@ namespace MortgageCalculator.Api.Services
         /// Get all mortages
         /// </summary>
         /// <returns></returns>
-        List<Mortgage> GetAllMortgages();
+        IList<Mortgage> GetAllMortgages();
 
         /// <summary>
         /// Get mortage by id

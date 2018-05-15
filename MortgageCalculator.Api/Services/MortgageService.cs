@@ -18,9 +18,9 @@ namespace MortgageCalculator.Api.Services
             this._mortgageRepo = mortgageRepo;
         }
 
-        public List<Mortgage> GetAllMortgages()
+        public IList<Mortgage> GetAllMortgages()
         {
-            return _mortgageRepo.GetAllMortgages();
+            return _mortgageRepo.GetAll();
         }
 
         public Mortgage GetbyId(int mortageId)

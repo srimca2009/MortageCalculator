@@ -10,21 +10,21 @@ namespace MortgageCalculator.Api.Repos
     public interface IMortgageRepo
     {
         List<Mortgage> GetAllMortgages();
-        IList GetAll();
+        IList<Mortgage> GetAll();
     }
 
     public class MortgageRepo : IMortgageRepo
     {
         private const string CacheKey = "mortage";
-        public IList GetAll()
+        public IList<Mortgage> GetAll()
         {
             ObjectCache cache = MemoryCache.Default;
 
             if (cache.Contains(CacheKey))
-                return (IList)cache.Get(CacheKey);
+                return (IList<Mortgage>)cache.Get(CacheKey);
             else
             {
-                IList getAllMortgages = this.GetAllMortgages();
+                IList<Mortgage> getAllMortgages = this.GetAllMortgages();
 
                 // Store data in the cache
                 CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
