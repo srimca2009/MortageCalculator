@@ -48,7 +48,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
      .state('mortgage.calc', {
          url: "/calculation",
          templateUrl: "pages/mortgage/calculation.html",
-         data: { pageTitle: 'Static table' },
+         data: { pageTitle: 'Calculations' },
          resolve: {
              loadPlugin: function ($ocLazyLoad) {
                  return $ocLazyLoad.load([

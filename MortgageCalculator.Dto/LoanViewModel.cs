@@ -13,5 +13,6 @@ namespace MortgageCalculator.Dto
         public double InterestAmount { get; set; }
         public double PrincipalAmount { get; set; }
         public double TotalAmount { get; set; }
+        public double TotalInterest { get; set; }
     }
 }

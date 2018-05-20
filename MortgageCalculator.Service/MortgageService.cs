@@ -27,36 +27,41 @@ namespace MortgageCalculator.Service
             return _mortgageRepository.GetAll().FirstOrDefault(x => x.MortgageId == mortageId);
         }
 
-        public List<LoanViewModel> LoanCalculation(double loanAmount, double interest, int numberOfYears, MortgageType type)
+        public List<LoanViewModel> LoanCalculation(double loanAmount, double interest, int numberOfYears, string type)
         {
             List<LoanViewModel> result = new List<LoanViewModel>();
 
+            double emiAmount = 0, paymentAmount=0, principalAmount=0;
             // rate of interest and number of payments for monthly payments
             var rateOfInterest = interest / 1200;
             var numberOfPayments = numberOfYears * 12;
 
             var rateOfInterestPerMonth = rateOfInterest * 100;
 
-            for (int i = 0; i <= numberOfPayments; i++)
+            for (int i = 0; i < numberOfPayments; i++)
             {
-                var principalAmount = loanAmount * rateOfInterest;
+                var interestAmt = loanAmount * rateOfInterest;
+                if (emiAmount == 0)
+                {
+                    paymentAmount = (rateOfInterest * loanAmount) / (1 - Math.Pow(1 + rateOfInterest, numberOfPayments * -1));
 
-                // loan amount = (interest rate * loan amount) / (1 - (1 + interest rate)^(number of payments * -1))
-                var paymentAmount = (rateOfInterest * loanAmount) / (1 - Math.Pow(1 + rateOfInterest, numberOfPayments * -1));
+                    emiAmount = paymentAmount;
+                }
+                   
+                principalAmount = emiAmount - interestAmt;
 
-                var interestAmount = paymentAmount - principalAmount;
-
-                if (type == MortgageType.Variable)
+                if (type == MortgageType.Variable.ToString())
                 {
                     loanAmount -= principalAmount;
                 }
 
                 var EMI = new LoanViewModel();
 
-                EMI.EMIAmount = paymentAmount;
-                EMI.InterestAmount = interestAmount;
-                EMI.PrincipalAmount = principalAmount;
-
+                EMI.EMIAmount = Math.Round(emiAmount, 2);
+                EMI.InterestAmount = Math.Round(interestAmt, 2);
+                EMI.PrincipalAmount =Math.Round(principalAmount,2);
+                EMI.EMIDate = DateTime.Now.AddMonths(i);
+                EMI.TotalAmount = Math.Round((EMI.PrincipalAmount + EMI.InterestAmount),2);
                 result.Add(EMI);
             }
             return result;

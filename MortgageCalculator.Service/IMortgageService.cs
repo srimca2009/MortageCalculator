@@ -17,5 +17,15 @@ namespace MortgageCalculator.Service
         /// <param name="mortageId"></param>
         /// <returns></returns>
         Mortgage GetbyId(int mortageId);
+
+        /// <summary>
+        /// Mortgage Loan calculations
+        /// </summary>
+        /// <param name="loanAmount"></param>
+        /// <param name="interest"></param>
+        /// <param name="numberOfYears"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        List<LoanViewModel> LoanCalculation(double loanAmount, double interest, int numberOfYears, string type);
     }
 }

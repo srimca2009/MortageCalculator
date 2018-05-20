@@ -34,7 +34,7 @@ function indexCtrl($scope, DTOptionsBuilder, httpService) {
         var promiseGet = httpService.get(getAllLoansUrl, null);
 
         promiseGet.then(function (result) {
-            debugger;
+            
             $scope.loans = result.data;
         }, function (err) {
             Console.log(err);
@@ -46,7 +46,30 @@ function indexCtrl($scope, DTOptionsBuilder, httpService) {
 
 function calcCtrl($scope, httpService) {
 
+    $scope.Calculations = function () {
+        if ($scope.calc_form.$valid) {
+            var promisePost = httpService.post(calculationUrl, $scope.loan);
+            promisePost.then(function (result) {
+                $scope.MortgageLoan = result.data;
+            }, function (err) {
+                $scope.loading = false;
+            });
+        } else {
+            $scope.calc_form.submitted = true;
+            $scope.loading = false;
+        }
+    }
 
+
+    $scope.getInterest = function () {
+        var total = 0;
+        if ($scope.MortgageLoan!=undefined) {
+            for (var i = 0; i < $scope.MortgageLoan.length; i++) {
+                total += $scope.MortgageLoan[i].InterestAmount;
+            }
+        }
+        return total;
+    }
 }
 
 angular

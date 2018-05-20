@@ -1,5 +1,7 @@
-﻿using MortgageCalculator.Dto;
+﻿using MortgageCalculator.Api.Models;
+using MortgageCalculator.Dto;
 using MortgageCalculator.Service;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -26,6 +28,17 @@ namespace MortgageCalculator.Api.Controllers
         public Mortgage Get(int id)
         {
             return _mortgageService.GetbyId(id);
+        }
+
+        [HttpPost]
+        [Route("Calculation")]
+        public List<LoanViewModel> Calculation(CalculationViewModel loan)
+        {
+            if (loan == null)
+            {
+                return null;
+            }
+            return _mortgageService.LoanCalculation(loan.LoanAmount, loan.InterestRate, loan.Years, loan.LoanType);
         }
     }
 }
