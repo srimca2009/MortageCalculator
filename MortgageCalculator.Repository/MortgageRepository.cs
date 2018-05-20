@@ -1,21 +1,21 @@
 ﻿using MortgageCalculator.Dto;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MortgageCalculator.Api.Repos
+namespace MortgageCalculator.Repository
 {
-    public interface IMortgageRepo
-    {
-        List<Mortgage> GetAllMortgages();
-        IList<Mortgage> GetAll();
-    }
-
-    public class MortgageRepo : IMortgageRepo
+    public class MortgageRepository : IMortgageRepository
     {
         private const string CacheKey = "mortage";
+
+        /// <summary>
+        ///  Get All mortages
+        /// </summary>
+        /// <returns></returns>
         public IList<Mortgage> GetAll()
         {
             ObjectCache cache = MemoryCache.Default;
@@ -34,8 +34,12 @@ namespace MortgageCalculator.Api.Repos
                 return getAllMortgages;
             }
         }
-       
-        public List<Mortgage> GetAllMortgages()
+
+        /// <summary>
+        /// Get all mortages from cache
+        /// </summary>
+        /// <returns></returns>
+        private List<Mortgage> GetAllMortgages()
         {
             using (var context = new MortgageData.MortgageDataContext())
             {
@@ -44,20 +48,19 @@ namespace MortgageCalculator.Api.Repos
                 foreach (var mortgage in mortgages)
                 {
                     result.Add(new Mortgage()
-                        {
-                            Name = mortgage.Name,
-                            EffectiveStartDate = mortgage.EffectiveStartDate,
-                            EffectiveEndDate = mortgage.EffectiveEndDate,
-                            CancellationFee = mortgage.CancellationFee,
-                            EstablishmentFee = mortgage.CancellationFee,
-                            InterestRepayment = (InterestRepayment)Enum.Parse(typeof(InterestRepayment), mortgage.MortgageType.ToString()),
-                            MortgageId = mortgage.MortgageId,
-                            MortgageType = (MortgageType)Enum.Parse(typeof(MortgageType), mortgage.MortgageType.ToString()),
-                           //TermsInMonths = mortgage.TermsInMonths
-                        }
+                    {
+                        Name = mortgage.Name,
+                        EffectiveStartDate = mortgage.EffectiveStartDate,
+                        EffectiveEndDate = mortgage.EffectiveEndDate,
+                        CancellationFee = mortgage.CancellationFee,
+                        EstablishmentFee = mortgage.CancellationFee,
+                        InterestRepayment = (InterestRepayment)Enum.Parse(typeof(InterestRepayment), mortgage.MortgageType.ToString()),
+                        MortgageId = mortgage.MortgageId,
+                        MortgageType = (MortgageType)Enum.Parse(typeof(MortgageType), mortgage.MortgageType.ToString()),
+                    }
                     );
                 }
-                return result;
+                return result.OrderBy(x=>x.MortgageType).ToList();
             }
         }
     }

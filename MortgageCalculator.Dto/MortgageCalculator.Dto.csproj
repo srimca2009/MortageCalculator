@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoanViewModel.cs" />
     <Compile Include="Mortgage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

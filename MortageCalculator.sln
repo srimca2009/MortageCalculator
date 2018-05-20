@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Web", "MortgageCalculator.Web\MortgageCalculator.Web.csproj", "{B899BA79-2CDF-4125-8154-517070193A87}"
 EndProject
@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.UnitTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Dto", "MortgageCalculator.Dto\MortgageCalculator.Dto.csproj", "{B0628D9A-6370-4FDF-B285-D8092A057622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Api", "MortgageCalculator.Api\MortgageCalculator.Api.csproj", "{DB707F8C-25F5-4347-8E67-457050BF88C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Repository", "MortgageCalculator.Repository\MortgageCalculator.Repository.csproj", "{259A01CA-2E11-4DAD-BBC8-7D7C6C9F0988}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Service", "MortgageCalculator.Service\MortgageCalculator.Service.csproj", "{12A9893B-1534-4D2C-B63D-037041444D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MortgageCalculator.Api", "MortgageCalculator.Api\MortgageCalculator.Api.csproj", "{8E34FD52-EF43-48E9-986A-8C13101BA061}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,18 @@ Global
 		{B0628D9A-6370-4FDF-B285-D8092A057622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0628D9A-6370-4FDF-B285-D8092A057622}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0628D9A-6370-4FDF-B285-D8092A057622}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB707F8C-25F5-4347-8E67-457050BF88C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB707F8C-25F5-4347-8E67-457050BF88C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB707F8C-25F5-4347-8E67-457050BF88C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB707F8C-25F5-4347-8E67-457050BF88C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259A01CA-2E11-4DAD-BBC8-7D7C6C9F0988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259A01CA-2E11-4DAD-BBC8-7D7C6C9F0988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259A01CA-2E11-4DAD-BBC8-7D7C6C9F0988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259A01CA-2E11-4DAD-BBC8-7D7C6C9F0988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A9893B-1534-4D2C-B63D-037041444D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A9893B-1534-4D2C-B63D-037041444D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A9893B-1534-4D2C-B63D-037041444D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A9893B-1534-4D2C-B63D-037041444D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E34FD52-EF43-48E9-986A-8C13101BA061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E34FD52-EF43-48E9-986A-8C13101BA061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E34FD52-EF43-48E9-986A-8C13101BA061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E34FD52-EF43-48E9-986A-8C13101BA061}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MortgageCalculator.Api")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Vagrant Inc.")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MortgageCalculator.Api")]
-[assembly: AssemblyCopyright("Copyright © Vagrant Inc. 2017")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e9bb15fe-9682-40d7-a521-36b444a0268d")]
+[assembly: Guid("c26a0ea8-0ce9-4fc2-aa8b-d74b2ee57ace")]
 
 // Version information for an assembly consists of the following four values:
 //

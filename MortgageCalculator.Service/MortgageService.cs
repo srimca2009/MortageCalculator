@@ -1,34 +1,33 @@
-﻿using MortgageCalculator.Api.Models;
-using MortgageCalculator.Api.Repos;
-using MortgageCalculator.Dto;
+﻿using MortgageCalculator.Dto;
+using MortgageCalculator.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MortgageCalculator.Api.Services
+namespace MortgageCalculator.Service
 {
     public class MortgageService : IMortgageService
     {
-        private readonly IMortgageRepo _mortgageRepo;
-        public MortgageService() : this(new MortgageRepo())
+        private readonly IMortgageRepository _mortgageRepository;
+        public MortgageService() : this(new MortgageRepository())
         { }
 
-        public MortgageService(IMortgageRepo mortgageRepo)
+        public MortgageService(IMortgageRepository mortgageRepository)
         {
-            this._mortgageRepo = mortgageRepo;
+            this._mortgageRepository = mortgageRepository;
         }
 
         public IList<Mortgage> GetAllMortgages()
         {
-            return _mortgageRepo.GetAll();
+            return _mortgageRepository.GetAll();
         }
 
         public Mortgage GetbyId(int mortageId)
         {
-            return _mortgageRepo.GetAllMortgages().FirstOrDefault(x => x.MortgageId == mortageId);
+            return _mortgageRepository.GetAll().FirstOrDefault(x => x.MortgageId == mortageId);
         }
 
-        public List<LoanViewModel> LoanCalculation(double loanAmount,double interest, int numberOfYears, MortgageType type)
+        public List<LoanViewModel> LoanCalculation(double loanAmount, double interest, int numberOfYears, MortgageType type)
         {
             List<LoanViewModel> result = new List<LoanViewModel>();
 
@@ -38,7 +37,7 @@ namespace MortgageCalculator.Api.Services
 
             var rateOfInterestPerMonth = rateOfInterest * 100;
 
-            for(int i=0;i<= numberOfPayments; i++)
+            for (int i = 0; i <= numberOfPayments; i++)
             {
                 var principalAmount = loanAmount * rateOfInterest;
 
@@ -47,15 +46,15 @@ namespace MortgageCalculator.Api.Services
 
                 var interestAmount = paymentAmount - principalAmount;
 
-                if(type == MortgageType.Variable)
+                if (type == MortgageType.Variable)
                 {
                     loanAmount -= principalAmount;
                 }
 
                 var EMI = new LoanViewModel();
 
-                EMI.EMIAmount       = paymentAmount;
-                EMI.InterestAmount  = interestAmount;
+                EMI.EMIAmount = paymentAmount;
+                EMI.InterestAmount = interestAmount;
                 EMI.PrincipalAmount = principalAmount;
 
                 result.Add(EMI);
