@@ -14,6 +14,7 @@ namespace MortgageCalculator.Dto
         public decimal CancellationFee { get; set; }
         public decimal EstablishmentFee { get; set; }
         public Guid SchemaIdentifier { get; internal set; }
+        public decimal InterestRate { get; set; }
     }
 
     public enum MortgageType
