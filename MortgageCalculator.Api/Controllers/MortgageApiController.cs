@@ -6,10 +6,10 @@ using System.Web.Http;
 namespace MortgageCalculator.Api.Controllers
 {
     [RoutePrefix("api/Mortgage")]
-    public class MortgageController : ApiController
+    public class MortgageApiController : ApiController
     {
         private readonly IMortgageService _mortgageService;
-        public MortgageController(IMortgageService mortgageService)
+        public MortgageApiController(IMortgageService mortgageService)
         {
             _mortgageService = mortgageService;
         }

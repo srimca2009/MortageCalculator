@@ -1,28 +1,32 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using MortgageCalculator.Api.Controllers;
 using MortgageCalculator.Dto;
 using MortgageCalculator.Service;
+using MortgageCalculator.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MortgageCalculator.UnitTests.Controller
 {
     [TestClass]
-    public class MortageApiControllerTest
+    public class MortgageControllerTest
     {
         private Mock<IMortgageService> _mortgageServiceMock;
-        MortgageApiController _objController;
+        MortgageController _objController;
         List<Mortgage> _listMortgages;
         Mortgage _mortgage;
+
 
         [TestInitialize]
         public void Initialize()
         {
 
             _mortgageServiceMock = new Mock<IMortgageService>();
-            _objController = new MortgageApiController(_mortgageServiceMock.Object);
+            _objController = new MortgageController(_mortgageServiceMock.Object);
 
 
             _listMortgages = new List<Mortgage>() {
@@ -49,36 +53,42 @@ namespace MortgageCalculator.UnitTests.Controller
 
         }
 
+
         [TestMethod]
-        public void Mortgage_Get_All()
+        public void Mortgages_Get_All()
         {
-            var dd = _mortgageServiceMock.Setup(x => x.GetAllMortgages()).Returns(_listMortgages);
-            var result = _objController.GetAll();
-            Assert.AreEqual(result.Count(), 2);
+            //Arrange
+            _mortgageServiceMock.Setup(x => x.GetAllMortgages()).Returns(_listMortgages);
+            var result = ((_objController.Index() as ViewResult).Model) as List<Mortgage>;
+            Assert.AreEqual(result.Count,2);
         }
 
         [TestMethod]
-        public void Mortgage_Get_All_NotEqual()
+        public void Mortgages_Get_All_NotEqual()
         {
+            //Arrange
             _mortgageServiceMock.Setup(x => x.GetAllMortgages()).Returns(_listMortgages);
-            var result = _objController.GetAll();
-            Assert.AreNotEqual(result.Count(), 3);
+            var result = ((_objController.Index() as ViewResult).Model) as List<Mortgage>;
+            Assert.AreNotEqual(result.Count, 3);
         }
+
 
         [TestMethod]
         public void Mortgage_Get()
         {
+            //Arrange
             _mortgageServiceMock.Setup(x => x.GetbyId(1)).Returns(_mortgage);
-            var result = _objController.Get(1);
+            var result = ((_objController.GetById(1) as ViewResult).Model) as Mortgage;
             Assert.AreEqual(result.MortgageId, 1);
         }
 
         [TestMethod]
         public void Mortgage_Get_NotEqual()
         {
+            //Arrange
             _mortgageServiceMock.Setup(x => x.GetbyId(1)).Returns(_mortgage);
-            var result = _objController.Get(1);
-            Assert.AreNotEqual(result.MortgageId, 5);
+            var result = ((_objController.GetById(1) as ViewResult).Model) as Mortgage;
+            Assert.AreNotEqual(result.MortgageId, 3);
         }
     }
 }
