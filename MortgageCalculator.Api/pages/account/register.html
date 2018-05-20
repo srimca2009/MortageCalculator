@@ -1,0 +1,46 @@
+<toaster-container></toaster-container>
+
+<div class="middle-box text-center loginscreen   animated fadeInDown">
+    <div ng-controller="signupcontroller as signup">
+        <div>
+
+            <h1 class="logo-name">IN+</h1>
+
+        </div>
+        <h3>Register to Cobros</h3>
+        <p>Create account to see it in action.</p>
+        <form class="m-t" name="signup_form" role="form" novalidate ng-submit="signUp()">
+            <div class="form-group">
+                <input type="email" name="email" class="form-control" placeholder="Email" required="" data-ng-model="registration.Email">
+                <div class="m-t-xs text-left" ng-show="(signup_form.email.$invalid && signup_form.submitted) || signup_form.email.$invalid && signup_form.email.$touched">
+                    <small class="text-danger" ng-show="signup_form.email.$error.required">Please input a email</small>
+                    <small class="text-danger" ng-show="signup_form.email.$error && !signup_form.email.$error.required">Please input a valid email address</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required="" data-ng-model="registration.Password" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" ng-minlength="6">
+                <div class="m-t-xs text-left" ng-show="(signup_form.password.$invalid && signup_form.submitted) || signup_form.password.$invalid && signup_form.password.$touched">
+                    <small class="text-danger" ng-show="signup_form.password.$error.required">Please input a password</small>
+                    <small class="text-danger" ng-show="!signup_form.password.$error.required && signup_form.password.$error.minlength">Please input a password minimum 6 character</small>
+                    <small class="text-danger" ng-show="!signup_form.password.$error.required && !signup_form.password.$error.minlength && signup_form.password.$error.pattern && signup_form.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password" required="" data-ng-model="registration.ConfirmPassword" compare-to="registration.Password">
+                <div class="m-t-xs text-left" ng-show="(signup_form.confirmpassword.$invalid && signup_form.submitted) ||signup_form.confirmpassword.$dirty">
+                    <small class="text-danger" ng-show="signup_form.confirmpassword.$error.required">Please input a confirm password</small>
+                    <small class="text-danger" ng-show="signup_form.confirmpassword.$error.compareTo && !signup_form.confirmpassword.$error.required"> Password don't match.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+            </div>
+            <button type="submit" ladda="loading" class="ladda-button btn btn-primary block full-width m-b" data-style="expand-left">Register</button>
+            <!--<button type="submit" class="btn btn-primary block full-width m-b">Register</button>-->
+
+            <p class="text-muted text-center"><small>Already have an account?</small></p>
+            <a class="btn btn-sm btn-white btn-block" ui-sref="login">Login</a>
+        </form>
+        <p class="m-t"> <small>Cobros Technologies &copy; 2018</small> </p>
+    </div>
+</div>

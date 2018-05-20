@@ -1,0 +1,121 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Organization</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Company</a>
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content  m-b-lg">
+                    <div class="row">
+                        <div class="col-sm-9 m-b-lg">
+                            <h3 class="m-t-none">Let's get started</h3>
+                            <p>Tell us a bit about your organization</p>
+                            <form role="form">
+                                <div class="form-group">
+                                    <label class="font-normal">Organization Name <small class="text-danger">*</small></label>
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">Alias Name</label>
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+
+                                <h3 class="m-t-none m-b font-normal">Company Address</h3>
+                                <div class="form-group">
+                                   <textarea class="form-control" placeholder="Address" rows="3"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="City" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <ui-select ng-model="person.selected" theme="bootstrap">
+                                                <ui-select-match>{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in states | filter: $select.search">
+                                                    <div ng-bind-html="item.Name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                           <input type="text" class="form-control" placeholder="Zip/Postel Code" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="m-t-none m-b font-normal">Regional Settings</h3>
+                                <div class="row m-b-lg">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-normal">Currency</label>
+                                            <ui-select ng-model="person.selected" theme="bootstrap">
+                                                <ui-select-match>{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="item.Id as item in currencies | filter: $select.search">
+                                                    <div ng-bind-html="item.Name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-normal">Fiscal Year</label>
+                                            <ui-select ng-model="person.selected" theme="bootstrap">
+                                                <ui-select-match>{{$select.selected.Name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in fiscalYear | filter: $select.search">
+                                                    <div ng-bind-html="item.Name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" checked="">
+                                                <label>Is Registered GST</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="font-normal">GSTIN <small class="text-danger">*</small></label>
+                                            <input type="text" class="form-control" placeholder="" min="15" max="15"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 m-b-lg">
+                                        <div class="form-group" id="data_1">
+                                            <label class="font-normal">GST Registered On <small class="text-danger">*</small></label>
+                                            <div class="input-group date">
+                                                <input type="datetime" class="form-control" date-time ng-model="sampleDate" view="date" auto-close="true" min-view="date" format="YYYY-MM-DD">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-sm btn-primary m-t-lg m-b-lg" type="submit">
+                                        Get Started
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

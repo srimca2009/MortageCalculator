@@ -1,0 +1,36 @@
+<div class="ibox-content">
+    <fieldset>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Mobile No</label>
+                    <input id="mobileno" ng-model="formData.MobileNo" name="mobileno" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Phone No</label>
+                    <input id="phoneno" ng-model="formData.PhoneNo" name="phoneno" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Email Id</label>
+                    <input id="email" ng-model="formData.EmailId" name="email" type="email" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Website</label>
+                    <input id="website" ng-model="formData.Website" name="website" type="url" class="form-control">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="m-t-md">
+        <a ui-sref="company.details.tax" class="btn btn-default">Previous</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+</div>
