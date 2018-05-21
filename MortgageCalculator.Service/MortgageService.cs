@@ -9,9 +9,6 @@ namespace MortgageCalculator.Service
     public class MortgageService : IMortgageService
     {
         private readonly IMortgageRepository _mortgageRepository;
-        public MortgageService() : this(new MortgageRepository())
-        { }
-
         public MortgageService(IMortgageRepository mortgageRepository)
         {
             this._mortgageRepository = mortgageRepository;
@@ -31,7 +28,7 @@ namespace MortgageCalculator.Service
         {
             List<LoanViewModel> result = new List<LoanViewModel>();
 
-            double emiAmount = 0, paymentAmount=0, principalAmount=0;
+            double emiAmount = 0, paymentAmount=0, principalAmount=0,balanceAmount=0;
             // rate of interest and number of payments for monthly payments
             var rateOfInterest = interest / 1200;
             var numberOfPayments = numberOfYears * 12;
@@ -53,6 +50,11 @@ namespace MortgageCalculator.Service
                 if (type == MortgageType.Variable.ToString())
                 {
                     loanAmount -= principalAmount;
+                    balanceAmount = loanAmount;
+                }
+                else
+                {
+                    balanceAmount -= 0;
                 }
 
                 var EMI = new LoanViewModel();
@@ -62,6 +64,7 @@ namespace MortgageCalculator.Service
                 EMI.PrincipalAmount =Math.Round(principalAmount,2);
                 EMI.EMIDate = DateTime.Now.AddMonths(i);
                 EMI.TotalAmount = Math.Round((EMI.PrincipalAmount + EMI.InterestAmount),2);
+                EMI.BalanceAmount = Math.Round(balanceAmount, 2);
                 result.Add(EMI);
             }
             return result;

@@ -84,5 +84,24 @@ namespace MortgageCalculator.UnitTests
             Mortgage results = _service.GetbyId(1) as Mortgage;
             Assert.AreNotEqual(2, results.MortgageId);
         }
+
+        [TestMethod]
+        public void Mortgage_Get_Calc()
+        {
+            _mockRepository.Setup(x => x.GetAll()).Returns(_listMortgages);
+            List<LoanViewModel> results = _service.LoanCalculation(200000,13.5,10,"Variable") as List<LoanViewModel>;
+            Assert.IsNotNull(results);
+            Assert.AreEqual(2, results.Count);
+        }
+
+        [TestMethod]
+        public void Mortgage_Get_Calc_NotEqual()
+        {
+            _mockRepository.Setup(x => x.GetAll()).Returns(_listMortgages);
+            List<LoanViewModel> results = _service.LoanCalculation(200000, 13.5, 10, "Variable") as List<LoanViewModel>;
+            Assert.IsNotNull(results);
+            Assert.AreNotEqual(2, results.Count);
+        }
+
     }
 }
